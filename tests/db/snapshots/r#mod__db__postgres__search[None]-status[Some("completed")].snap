@@ -1,0 +1,50 @@
+---
+source: tests/db/postgres.rs
+expression: "connector.get_jobs(search, status).await"
+---
+Ok(
+    [
+        Job {
+            id: "01JDM0X8EVAM823JZBGKYNBA98",
+            name: "PasswordChangeNotification",
+            task_data: Object {
+                "change_time": String("2024-11-27T12:30:00Z"),
+                "email": String("user12@example.com"),
+                "user_id": Number(134),
+            },
+            status: "completed",
+            run_at: 2024-11-28T08:04:25Z,
+            interval: None,
+            created_at: 2024-11-28T08:03:25Z,
+            updated_at: 2024-11-28T08:03:25Z,
+        },
+        Job {
+            id: "01JDM0X8EVAM823JZBGKYNBA90",
+            name: "UserAccountActivation",
+            task_data: Object {
+                "activation_token": String("xyz987654"),
+                "email": String("user21@example.com"),
+                "user_id": Number(143),
+            },
+            status: "completed",
+            run_at: 2024-11-28T08:04:25Z,
+            interval: None,
+            created_at: 2024-11-28T08:03:25Z,
+            updated_at: 2024-11-28T08:03:25Z,
+        },
+        Job {
+            id: "01JDM0X8EVAM823JZBGKYNBA89",
+            name: "PasswordChangeNotification",
+            task_data: Object {
+                "change_time": String("2024-11-27T15:00:00Z"),
+                "email": String("user22@example.com"),
+                "user_id": Number(144),
+            },
+            status: "completed",
+            run_at: 2024-11-28T08:04:25Z,
+            interval: None,
+            created_at: 2024-11-28T08:03:25Z,
+            updated_at: 2024-11-28T08:03:25Z,
+        },
+    ],
+)

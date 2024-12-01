@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+
+    <title>{% block tab_title %}{% endblock tab_title %}</title>
+
+    <script src="https://unpkg.com/htmx.org@2.0.3/dist/htmx.min.js"></script>
+    <link rel="stylesheet" href="static/styles.css">
+
+    {% block head %}
+
+    {% endblock head %}
+</head>
+
+<body data-new-gr-c-s-check-loaded="14.1209.0" data-gr-ext-installed="">
+    <div id="root">
+        <div class="min-h-screen bg-gray-100">
+            <div class="bg-white shadow">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex items-center justify-between h-16">
+                        <div class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="lucide lucide-activity w-8 h-8 text-blue-500">
+                                <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                            </svg>
+                            <h1 class="ml-2 text-xl font-semibold text-gray-900">Loco Jobs Admin</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                {% block content %}
+                {% endblock content %}
+            </main>
+        </div>
+        <div style="position: fixed; z-index: 9999; inset: 16px; pointer-events: none;"></div>
+    </div>
+
+    <script>
+        function showPopup(element, task_id) {
+            const dataStr = element.getAttribute('data');
+            const data = JSON.parse(dataStr);
+            const prettyJson = JSON.stringify(data, null, 2);
+            document.getElementById('popup-job-data').textContent = prettyJson;
+            document.getElementById('popup-job-title').textContent = task_id;
+            document.getElementById('popup').classList.remove('hidden');
+        }
+
+        function closePopup() {
+            document.getElementById('popup').classList.add('hidden');
+            document.getElementById('popup-job-data').textContent = "";
+            document.getElementById('popup-job-title').textContent = "";
+        }
+    </script>
+
+    {% block js %}
+
+    {% endblock js %}
+</body>
+
+</html>

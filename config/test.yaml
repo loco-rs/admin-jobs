@@ -1,0 +1,24 @@
+settings:
+  db:
+    kind: Sqlite
+    uri: {{get_env(name="DATABASE_URL", default="sqlite://test.sqlite?mode=rwc")}}
+
+logger:
+  enable: false
+  pretty_backtrace: true
+  level: debug
+  format: compact
+
+server:
+  port: 5150
+  host: http://localhost
+  middlewares: 
+    static:
+      enable: true
+      must_exist: true
+      precompressed: false
+      folder:
+        uri: "/static"
+        path: "assets/static"
+      fallback: "assets/static/404.html"
+

@@ -1,0 +1,13 @@
+---
+source: tests/db/sqlite.rs
+expression: connector.status_stats().await
+---
+Ok(
+    StatusSats {
+        completed: 3,
+        processing: 3,
+        cancelled: 1,
+        queued: 5,
+        failed: 2,
+    },
+)

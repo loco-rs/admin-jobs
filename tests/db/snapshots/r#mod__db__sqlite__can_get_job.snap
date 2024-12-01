@@ -1,0 +1,22 @@
+---
+source: tests/db/sqlite.rs
+expression: "connector.get_job(\"01JDM0X8EVAM823JZBGKYNBA99\").await"
+---
+Ok(
+    Some(
+        Job {
+            id: "01JDM0X8EVAM823JZBGKYNBA99",
+            name: "UserAccountActivation",
+            task_data: Object {
+                "activation_token": String("abcdef123456"),
+                "email": String("user11@example.com"),
+                "user_id": Number(133),
+            },
+            status: "queued",
+            run_at: 2024-11-28T08:19:08Z,
+            interval: None,
+            created_at: 2024-11-28T08:03:25Z,
+            updated_at: 2024-11-28T08:03:25Z,
+        },
+    ),
+)

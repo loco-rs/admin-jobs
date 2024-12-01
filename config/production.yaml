@@ -1,0 +1,37 @@
+settings:
+  worker_connection:
+    kind: {{get_env(name="WORKER_KIND", default="")}}
+    # Database connection URI
+    uri: {{get_env(name="CONNECTION_STRING", default="")}}
+    # Set the timeout duration when acquiring a connection.
+    connect_timeout: {{get_env(name="DB_CONNECT_TIMEOUT", default="2000")}}
+    # Set the idle duration before closing a connection.
+    idle_timeout: {{get_env(name="DB_IDLE_TIMEOUT", default="2000")}}
+    # Minimum number of connections for a pool.
+    min_connections: {{get_env(name="DB_MIN_CONNECTIONS", default="2")}}
+    # Maximum number of connections for a pool.
+    max_connections: {{get_env(name="DB_MAX_CONNECTIONS", default="2")}}
+ 
+logger:
+  enable: true
+  pretty_backtrace: true
+  level: info 
+  format: compact
+
+server:
+  port: 5150
+  host: http://localhost
+  middlewares: 
+    fallback:
+      enable: true
+      code: 400
+      file: assets/static/404.html
+    static:
+      enable: true
+      must_exist: true
+      precompressed: false
+      folder:
+        uri: "/static"
+        path: "assets/static"
+      fallback: "assets/static/404.html"
+

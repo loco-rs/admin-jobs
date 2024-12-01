@@ -1,0 +1,48 @@
+{% extends "layouts/application.html" %}
+
+{% block tab_title %}
+Loco Jobs Admin
+{% endblock tab_title %}
+
+{% block content %}
+<div class="flex items-center gap-2 px-4 w-full mb-5">
+    <div class="ml-auto">
+        <span>Polling interval: </span>
+        <select id="polling-interval" class="bg-transparent" onchange="
+                    var pollingTrigger = document.getElementById('polling-trigger');
+                    if (this.value === 'never') {
+                        pollingTrigger.setAttribute('hx-trigger', 'none');
+                    } else {
+                        pollingTrigger.setAttribute('hx-trigger', 'every ' + this.value);
+                    }
+                    htmx.process(pollingTrigger);
+                ">
+            <option value="never" selected>Never</option>
+            <option value="5000">5 seconds</option>
+            <option value="10000">10 seconds</option>
+            <option value="30000">30 seconds</option>
+            <option value="60000">1 minute</option>
+        </select>
+        <div id="polling-trigger" hx-get="/jobs/search" hx-trigger="none" hx-target="#jobs"
+            hx-include="#search-input, #status-dropdown" hx-indicator=".loading-spinner"></div>
+    </div>
+</div>
+
+<div id="jobs">
+    {% include "jobs/_list.html" %}
+</div>
+
+<div id="popup" class="fixed inset-0 bg-gray-900 bg-opacity-50 hidden flex items-center justify-center">
+    <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
+        <h2 class="text-xl font-bold text-gray-800 mb-5"> Job: <span id="popup-job-title"></span></h2>
+        <pre id="popup-job-data" class="text-sm text-gray-600 bg-gray-50 p-4 rounded overflow-x-auto"></pre>
+
+        <div class="mt-4 flex justify-end">
+            <button onclick="closePopup()" class="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600">
+                Close
+            </button>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

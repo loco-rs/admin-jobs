@@ -1,0 +1,36 @@
+---
+source: tests/db/postgres.rs
+expression: "connector.get_jobs(search, status).await"
+---
+Ok(
+    [
+        Job {
+            id: "01JDM0X8EVAM823JZBGKYNBA99",
+            name: "UserAccountActivation",
+            task_data: Object {
+                "activation_token": String("abcdef123456"),
+                "email": String("user11@example.com"),
+                "user_id": Number(133),
+            },
+            status: "queued",
+            run_at: 2024-11-28T08:19:08Z,
+            interval: None,
+            created_at: 2024-11-28T08:03:25Z,
+            updated_at: 2024-11-28T08:03:25Z,
+        },
+        Job {
+            id: "01JDM0X8EVAM823JZBGKYNBA90",
+            name: "UserAccountActivation",
+            task_data: Object {
+                "activation_token": String("xyz987654"),
+                "email": String("user21@example.com"),
+                "user_id": Number(143),
+            },
+            status: "completed",
+            run_at: 2024-11-28T08:04:25Z,
+            interval: None,
+            created_at: 2024-11-28T08:03:25Z,
+            updated_at: 2024-11-28T08:03:25Z,
+        },
+    ],
+)
